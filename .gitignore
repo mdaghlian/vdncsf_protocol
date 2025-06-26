@@ -1,2 +1,4 @@
 *.vscode/*
 qCSF_original/Data/*
+*__pycache__*
+PRF_Stimulus/Experiment/logs/*

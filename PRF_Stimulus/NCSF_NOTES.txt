@@ -1,0 +1,19 @@
+[1] activate correct environemnt
+conda activate eyelink
+
+[2] Correct command to get it running 
+python main.py --sub 01 --ses 1 --run 1 --eye 1 # 1 for eye tracking 0 for no eye tracking
+# specify the task like this 
+--task 2R_scanner (for scanner room) 
+--task 2R_psych (for psychophysics room)
+
+[3] Calibrate (c); validate (v); 
+esc
+###
+WAITING FOR SCANNER 
+###
+Press 't'
+
+That is it
+
+
