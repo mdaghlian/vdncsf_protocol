@@ -15,7 +15,7 @@ window:
     fullscr: True
     winType: pyglet
     waitBlanking: True
-    screen: 1
+    screen: 0
 
 monitor:
     name: default

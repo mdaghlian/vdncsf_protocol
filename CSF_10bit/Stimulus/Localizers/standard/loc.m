@@ -13,7 +13,7 @@
 close all
 clear all
 sca;
-% Screen('Preference', 'SkipSyncTests', 1); 
+Screen('Preference', 'SkipSyncTests', 1); 
 CSF10_bit_path = '/data1/projects/dumoulinlab/Lab_members/Marcus/programs/Experiments/vdncsf_protocol/CSF_10bit';
 addpath(genpath(CSF10_bit_path))
 

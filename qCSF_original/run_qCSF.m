@@ -34,7 +34,7 @@ if nAFC==4
 elseif nAFC==2
     angle_offset   = 30;
 end
-n_trials           = 150;% # trials for qCSF
+n_trials           = 50;% # trials for qCSF
 
 feedback           = 1; % feedback?
 
@@ -107,13 +107,13 @@ screenNumber = 0%max(screens); % MD EDIT TO BE 2
 % High bit depth (bit stealing) using MONO++
 PsychDefaultSetup(2)
 PsychImaging('PrepareConfiguration');
-% PsychImaging('AddTask','General','EnablePseudoGrayOutput');
+PsychImaging('AddTask','General','EnablePseudoGrayOutput');
 PsychImaging('AddTask','General','FloatingPoint32Bit');
 
 % May 2025 -> commented out these 2 lines (no longer BITS!!) 
 % but it worked.... -> 
-% PsychImaging('AddTask','FinalFormatting','DisplayColorCorrection','ClampOnly');
-% PsychImaging('AddTask','General','EnableBits++Mono++Output');
+PsychImaging('AddTask','FinalFormatting','DisplayColorCorrection','ClampOnly');
+PsychImaging('AddTask','General','EnableBits++Mono++Output');
 
 [w originalrect] = PsychImaging('OpenWindow', screenNumber);
 

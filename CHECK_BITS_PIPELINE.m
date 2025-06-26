@@ -22,4 +22,4 @@ until the screen matches the description)
 
 % To check that it is all working do this:
 % press 'b' when asked to input a letter.
-BitsPlusImagingPipelineTest(0) % screen number 2
+BitsPlusImagingPipelineTest(2) % screen number 2

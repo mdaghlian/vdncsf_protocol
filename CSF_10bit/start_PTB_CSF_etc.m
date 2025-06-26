@@ -1,6 +1,6 @@
 % add stimulus files
 CSF10_bit_path = '/data1/projects/dumoulinlab/Lab_members/Marcus/programs/Experiments/vdncsf_protocol/CSF_10bit';
-addpath(genpath(CSF10_bit_path))
+% addpath(genpath(CSF10_bit_path))
 CSF10_bit_ptb_path = '/packages/matlab/toolbox/psychtoolbox/3.0.17';
 % add psychtoolbox 
 addpath(genpath(CSF10_bit_ptb_path));

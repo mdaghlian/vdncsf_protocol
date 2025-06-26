@@ -200,7 +200,7 @@ handles.data.experiment = contents{get(hObject,'Value')};
 switch handles.data.experiment
     case    {'contrast sensitivity function 4sf', 'contrast sensitivity function 6sf'}
 %         set(handles.experiment,     'String',setLocParams);
-%         fixString  = {'disk','double disk','large cross','large cross x+','left disk','right disk'};
+         fixString  = {'disk','double disk','large cross','large cross x+','left disk','right disk'};
 %         set(handles.fixation(1),    'String',fixString);
 %         set(handles.savestimparams, 'Value',1);
 %         set(handles.repetitions,    'String','1');    %#
