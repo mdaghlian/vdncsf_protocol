@@ -8,7 +8,7 @@ Created on Mon Feb 25 14:07:02 2019
 import numpy as np
 from psychopy import visual
 from psychopy import tools
-
+import math
 
 class PRFStim(object):  
     def __init__(self, session, 
@@ -198,3 +198,59 @@ class PRFStim(object):
 
 
 
+
+class FixationBullsEye(object):
+    def __init__(self, win, fix_col, line_width, dot_radius, line_radius):
+        self.fix_col = fix_col
+        self.line_width = line_width
+        self.dot_radius = dot_radius
+        self.line_radius = line_radius
+
+        # Calculate sin and cos of 45 degrees (or pi/4 radians) for line endpoints
+        # Using math.radians to convert degrees to radians for math functions
+        sin_45 = math.sin(math.radians(45))
+        cos_45 = math.cos(math.radians(45))
+
+        # Line 1: Goes from bottom-left to top-right (45 degrees from horizontal)
+        line1_start = (-self.line_radius * cos_45, -self.line_radius * sin_45)
+        line1_end = (self.line_radius * cos_45, self.line_radius * sin_45)
+
+        # Line 2: Goes from top-left to bottom-right (135 degrees from horizontal, or -45 degrees)
+        line2_start = (-self.line_radius * cos_45, self.line_radius * sin_45)
+        line2_end = (self.line_radius * cos_45, -self.line_radius * sin_45)
+
+        # --- Create Stimuli ---
+        # Create the first line stimulus
+        self.cross_line1 = visual.Line(
+            win=win,
+            start=line1_start,
+            end=line1_end,
+            lineWidth=self.line_width,
+            lineColor=self.fix_col,
+            units='deg' 
+        )
+
+        # Create the second line stimulus
+        self.cross_line2 = visual.Line(
+            win=win,
+            start=line2_start,
+            end=line2_end,
+            lineWidth=self.line_width,
+            lineColor=self.fix_col,
+            units='deg' 
+        )
+
+        # Create the central dot stimulus
+        self.center_dot = visual.Circle(
+            win=win,
+            radius=self.dot_radius,
+            fillColor=self.fix_col,
+            lineColor=None, # No border for the dot
+            units='deg'
+        )
+    def draw(self):
+        # --- Drawing and Displaying ---
+        # Draw all stimuli to the back buffer
+        self.cross_line1.draw()
+        self.cross_line2.draw()
+        self.center_dot.draw()

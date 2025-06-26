@@ -63,12 +63,12 @@ PRF stimulus settings:
     Bar width in degrees: 1.25
     Checkers motion speed: 3          # checkers motion speed. direction is randomly up/down at each bar step
     Size fixation dot in degrees: 0.05 # dot changes color on average every two TRs (or bar steps)
-    # *************** SCOTOMA PARAMETERS *************************
-    Scotoma : False # False=no scotoma
-    Scotoma Position : [0.0, 0.0] # Centre of scotoma (circle on screen)
-    Scotoma radius in degrees: 2.0 # Radius of scotoma
-    
-    
+    fixation_method : cross    
+    fix_cross_parameters:
+        dot_radius: 0.05
+        line_width: 0.025
+
+        
 
 Task settings: 
     response interval: 0.8 # time in s you allow the participant to respond that still counts as correct response

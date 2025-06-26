@@ -14,7 +14,7 @@ from psychopy import tools
 from exptools2.core import Session, PylinkEyetrackerSession
 from exptools2.core.session import Session
 from trial import PRFTrial
-from stim import PRFStim
+from stim import PRFStim, FixationBullsEye
 
 opj = os.path.join
 
@@ -27,7 +27,6 @@ class PRFSession(PylinkEyetrackerSession):
         
         
         super().__init__(output_str=output_str, output_dir=output_dir, settings_file=settings_file, eyetracker_on=eyetracker_on)
-        
         #if we are scanning, here I set the mri_trigger manually to the 't'. together with the change in trial.py, this ensures syncing
         if self.settings['mri']['topup_scan']==True:
             self.topup_scan_duration=self.settings['mri']['topup_duration']
@@ -101,34 +100,39 @@ class PRFSession(PylinkEyetrackerSession):
 
 
         #as current basic task, generate fixation circles of different colors, with black border
-        
-        fixation_radius_pixels=tools.monitorunittools.deg2pix(self.settings['PRF stimulus settings']['Size fixation dot in degrees'], self.monitor)/2
+        fixation_radius_pixels=tools.monitorunittools.deg2pix(self.settings['PRF stimulus settings']['Size fixation dot in degrees'], self.monitor)/2            
+        if self.settings['PRF stimulus settings']['fixation_method'] == 'dot':        
+            #two colors of the fixation circle for the task
+            self.fixation_disk_0 = visual.Circle(self.win, 
+                units='pix', radius=fixation_radius_pixels, 
+                fillColor=[1,-1,-1], lineColor=[1,-1,-1])
+            
+            self.fixation_disk_1 = visual.Circle(self.win, 
+                units='pix', radius=fixation_radius_pixels, 
+                fillColor=[-1,1,-1], lineColor=[-1,1,-1])
+        elif self.settings['PRF stimulus settings']['fixation_method'] == 'cross':
+            line_width=tools.monitorunittools.deg2pix(
+                self.settings['PRF stimulus settings']['fix_cross_parameters']['line_width'],
+                self.monitor)            
 
-#        self.fixation_circle = visual.Circle(self.win, 
-#            radius=fixation_radius_pixels, 
-#            units='pix', lineColor='black')
-        
-        
-        #two colors of the fixation circle for the task
-        self.fixation_disk_0 = visual.Circle(self.win, 
-            units='pix', radius=fixation_radius_pixels, 
-            fillColor=[1,-1,-1], lineColor=[1,-1,-1])
-        
-        self.fixation_disk_1 = visual.Circle(self.win, 
-            units='pix', radius=fixation_radius_pixels, 
-            fillColor=[-1,1,-1], lineColor=[-1,1,-1])
-
-        
-        # ******************************* CHANGES **********************************
-        if self.settings['PRF stimulus settings']['Scotoma']:
-            scotoma_radius_pixels=tools.monitorunittools.deg2pix(self.settings['PRF stimulus settings']['Scotoma radius in degrees'], self.monitor)
-            scotoma_pos_pixels=tools.monitorunittools.deg2pix(self.settings['PRF stimulus settings']['Scotoma Position'], self.monitor)
-            self.scotoma_patch = visual.Circle(self.win, 
-                                               pos=scotoma_pos_pixels,
-                                               units='pix', radius=scotoma_radius_pixels, 
-                                               fillColor=[0,0,0], lineColor=[0,0,0])
-
-
+            dot_radius=self.settings['PRF stimulus settings']['fix_cross_parameters']['dot_radius']
+            line_radius=50
+            # Green 
+            self.fixation_disk_0 =  FixationBullsEye(
+                win=self.win,
+                fix_col=[1,-1,-1],
+                line_width=line_width,
+                dot_radius=dot_radius,
+                line_radius=line_radius,
+            )
+            # Red
+            self.fixation_disk_1 =  FixationBullsEye(
+                win=self.win,
+                fix_col=[-1,1,-1],
+                line_width=line_width,
+                dot_radius=dot_radius,
+                line_radius=line_radius,
+            )
 
     def create_trials(self):
         """creates trials by setting up prf stimulus sequence"""
@@ -224,10 +228,6 @@ class PRFSession(PylinkEyetrackerSession):
                                pos_in_ori=self.current_trial.bar_position_in_ori, 
                                orientation=self.current_trial.bar_orientation,
                                bar_direction=self.current_trial.bar_direction)
-            
-            # If drawing bar, check if there needs to be a scotoma, then add it            
-            if self.settings['PRF stimulus settings']['Scotoma']:
-                self.scotoma_patch.draw()
             
         #hacky way to draw the correct dot color. could be improved
         if self.next_dot_time<len(self.dot_switch_color_times):

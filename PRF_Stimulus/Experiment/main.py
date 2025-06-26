@@ -46,25 +46,6 @@ def main(argv):
             eyetracker_on = int(arg)==1
             
     print(f"sub-{subject} ses-{sess} task-{task} run-{run} eye-{eyetracker_on}")
-
-    # subject = sys.argv[1]
-    # sess =  sys.argv[2]
-    # 3 conditions: AS0, AS1, AS2
-    # (no scotoma, scotoma at [0,0], scotoma at [2,0])
-    # task = sys.argv[3]
-    #in the full experiment we would do 3 runs?
-    # run = sys.argv[4]
-    
-    # try:
-    #     eye = sys.argv[5]
-    # except:
-    #     eye = 0
-
-    # if eye == 0:
-    #     eyetracker_on = False
-    # else:
-    #     eyetracker_on = True
-    # eyetracker_on =False
     
     output_str= f"sub-{subject}_ses-{sess}_task-{task}_run-{run}"
     

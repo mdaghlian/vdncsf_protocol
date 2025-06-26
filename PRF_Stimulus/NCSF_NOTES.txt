@@ -7,12 +7,14 @@ python main.py --sub 01 --ses 1 --run 1 --eye 1 # 1 for eye tracking 0 for no ey
 --task 2R_scanner (for scanner room) 
 --task 2R_psych (for psychophysics room)
 
-[3] Calibrate (c); validate (v); 
-esc
-###
-WAITING FOR SCANNER 
-###
-Press 't'
+[3] Eyetracker 
+* Check the correct eye is selected
+* press (c) to Calibrate
+* press (v) to validate
+* press "esc" to got " WAITING FOR SCANNER screen
+
+-> in the psychophysics room press (t) to start 
+-> in scanner: wait for the scanner to start 
 
 That is it
 
