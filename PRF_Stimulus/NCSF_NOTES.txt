@@ -2,7 +2,7 @@
 conda activate eyelink
 
 [2] Correct command to get it running 
-python main.py --sub 01 --ses 1 --run 1 --eye 1 # 1 for eye tracking 0 for no eye tracking
+python main.py --sub 99 --ses 1 --run 1 --eye 1 --task 2R_scanner # 1 for eye tracking 0 for no eye tracking
 # specify the task like this 
 --task 2R_scanner (for scanner room) 
 --task 2R_psych (for psychophysics room)
@@ -19,3 +19,6 @@ python main.py --sub 01 --ses 1 --run 1 --eye 1 # 1 for eye tracking 0 for no ey
 That is it
 
 
+
+# EXPECTED TRS LONG = 225
+# EXPECTED TRS SHORT = 125
