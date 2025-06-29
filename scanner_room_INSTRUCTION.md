@@ -37,3 +37,12 @@ python main.py --sub 999 --ses 1 --run 1 --eye 1 --task 2R_scanner
 * press enter on eyelink keyboard to show eyelink camera
 * press "esc" to got " WAITING FOR SCANNER screen
 -> in scanner: wait for the scanner to start 
+
+
+
+
+
+# *** FRACT
+
+220 cm distanct
+252 = blue ruler
