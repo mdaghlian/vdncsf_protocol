@@ -158,7 +158,7 @@ try,
             break;
         end;
         disp(sprintf('\n[%s]:Done repetition set %d/%d',mfilename,rep,gp.dot.measurementsPerDot));
-        save('~/Desktop/hptmp.mat');drawnow;
+        save('./Output/hptmp.mat');drawnow;
     end;
     % close
     ShowCursor;

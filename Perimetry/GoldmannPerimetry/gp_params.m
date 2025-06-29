@@ -31,7 +31,7 @@ disp(sprintf('[%s]:Getting experimentor''s responses from device #%d',mfilename,
 
 
 % display params
-gp.display = loadDisplayParams('displayName','3T_projector_800x600');
+gp.display = loadDisplayParams('displayName','7T_bold_screen_10bit_SpinozaCentre');
 gp.display.quitProgKey    = KbName('q');
 gp.display.yesKey    = 'm';
 gp.display.noKey     = 'x';
@@ -90,7 +90,7 @@ switch(gp.dot.coordAxis)
         xstep = gp.screenSize(1)/(gp.dot.coordNLines*2+1);
         xdim  = round([0:gp.dot.coordNLines*2-1].*xstep+xstep/2);
         ydim  = ydim(:)*ones(1,length(xdim));
-        xdim  = xdim(:)*ones(1,length(ydim));j jjjj;l
+        xdim  = xdim(:)*ones(1,length(ydim));
         xdim  = xdim';
         
         for n=1:size(xdim,2),

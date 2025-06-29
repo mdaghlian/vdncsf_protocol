@@ -55,6 +55,6 @@ title(sprintf('Dot Shown: Diameter = %.1fdeg; Dot distance = %.1fdeg;',gp.screen
 
 
 % save
-filename = ['~/Desktop/' mfilename '-' gp.subject '-' datestr(now,30) '.mat'];
+filename = ['./Output/' mfilename '-' gp.subject '-' datestr(now,30) '.mat'];
 save(filename);
 disp(sprintf('[%s]:saved data in: %s',mfilename,filename));

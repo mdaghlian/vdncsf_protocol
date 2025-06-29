@@ -23,6 +23,6 @@ imagesc(f.interp,[0 1]);colormap('gray');axis('image','off');
 
 % save
 save
-filename = ['~/Desktop/' mfilename '-' gp.subject '-' datestr(now,30) '.mat'];
+filename = ['./Output/' mfilename '-' gp.subject '-' datestr(now,30) '.mat'];
 save(filename);
 disp(sprintf('[%s]:saved data in: %s',mfilename,filename));

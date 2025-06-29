@@ -52,7 +52,7 @@ gp.dot.percentageBlank = .3; % no stim
 gp.dot.measurementsPerDot = 4;
 
 % display params
-gp.display = loadDisplayParams('displayName','3T_projector_800x600');
+gp.display = loadDisplayParams('displayName','7T_bold_screen_10bit_SpinozaCentre');
 gp.display.quitProgKey    = KbName('q');
 gp.display.yesKey    = 'm';
 gp.display.noKey     = 'x';

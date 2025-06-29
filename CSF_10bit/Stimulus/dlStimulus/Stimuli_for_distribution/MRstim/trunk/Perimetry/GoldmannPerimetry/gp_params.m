@@ -90,7 +90,7 @@ switch(gp.dot.coordAxis)
         xstep = gp.screenSize(1)/(gp.dot.coordNLines*2+1);
         xdim  = round([0:gp.dot.coordNLines*2-1].*xstep+xstep/2);
         ydim  = ydim(:)*ones(1,length(xdim));
-        xdim  = xdim(:)*ones(1,length(ydim));j jjjj;l
+        xdim  = xdim(:)*ones(1,length(ydim));
         xdim  = xdim';
         
         for n=1:size(xdim,2),

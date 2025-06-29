@@ -3,7 +3,7 @@ function params=displayParams(gamma)
 params.screenNumber = 0; %set 1 for device
 
 %% set gamma values;
-params.screenNumber = 1; %max(Screen('Screens')); %set 1 for BOLD screen psychophysics room.
+params.screenNumber = 0; %max(Screen('Screens')); %set 1 for BOLD screen psychophysics room.
                                                % Set to 0 for 7T BOLD
                                                % screen
                                                % 
@@ -13,8 +13,7 @@ params.screenNumber = 1; %max(Screen('Screens')); %set 1 for BOLD screen psychop
 %% set display parameters
 params.numPixels = [1920 1080];
 params.dimensions = [69.84  39.29];
-%params.screenNumber = 1;
-params.distance = 220;
+params.distance = 196;
 params.degperpix=2*((atan(params.dimensions./(2*params.distance))).*(180/pi))./params.numPixels; %visual angle for 1 pixel 
 params.pixperdeg = 1./params.degperpix; %n of pixels for 1 visual angle;
 params.pixperdeg = ceil(mean(params.pixperdeg));
