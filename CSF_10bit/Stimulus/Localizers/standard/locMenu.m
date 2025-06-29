@@ -61,7 +61,7 @@ function locMenu_OpeningFcn(hObject, eventdata, handles, varargin)
 
 % Choose default menu params for locMenu
 set(handles.experiment,     'String',setLocParams);
-fixString  = {'disk','double disk','large cross','large cross x+','left disk','right disk'};
+fixString  = {'large cross', 'disk','double disk','large cross x+','left disk','right disk', 'double large cross'};
 set(handles.fixation(1),     'String',fixString);
 set(handles.savestimparams, 'Value',1);
 set(handles.repetitions,    'String','1');    %#
@@ -201,7 +201,7 @@ switch handles.data.experiment
     case    {'contrast sensitivity function 4sf', 'contrast sensitivity function 6sf'}
 %         set(handles.experiment,     'String',setLocParams);
          fixString  = {'disk','double disk','large cross','large cross x+','left disk','right disk'};
-%         set(handles.fixation(1),    'String',fixString);
+         set(handles.fixation(1),    'String',fixString);
 %         set(handles.savestimparams, 'Value',1);
 %         set(handles.repetitions,    'String','1');    %#
 %         set(handles.runPriority,    'String','3');    %#

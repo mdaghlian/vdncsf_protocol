@@ -240,7 +240,7 @@ switch(lower(params.display.fixType))
     case {'large cross' , 'largecross'}
         params.display.fixColorRgb    = [255   0 0 255;...
                                            0 255 0 255];
-        params.display.fixSizePixels  = 12;
+        params.display.fixSizePixels  = 2; % MARCUS YOU CAN CHANGE THIS HERE
         dim.x = params.display.numPixels(1);
         dim.y = params.display.numPixels(2);
         dim.ycoord = [1:dim.y dim.y:-1:1] ; % assume ydim is smallest
@@ -276,6 +276,13 @@ switch(lower(params.display.fixType))
         dim.y = params.display.numPixels(2);
         params.display.fixX = round(dim.x./2) + floor(min(max(dim.x),max(dim.y))./2);
         params.display.fixY = round(dim.y./2);
+    case {'double large cross' , 'doublelargecross'}
+        params.display.fixColorRgb    = [255 255 0 255;...
+                                         255 255 0 255];
+        params.display.fixSizePixels{1}= 12;
+        dim.ycoord = [1:dim.y dim.y:-1:1] ; % assume ydim is smallest
+        dim.xcoord = [1:dim.y 1:dim.y] + round(-dim.y/2+dim.x/2);
+        params.display.fixCoords{1} = [dim.xcoord;dim.ycoord];        
     otherwise
         error('Unknown fixationType!');
 end

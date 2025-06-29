@@ -16,7 +16,7 @@ eyeViewing = 'R'; %
 sesFileName = ['sub-' initials '_ses-' sesNum '_run-' runNum '_eye-' eyeViewing];
 disp(sesFileName)
 doEyeTracking = 1;
-
+fix_size_pixels = 2;
 
 %
 Screen('Preference', 'SkipSyncTests', 1); 
@@ -35,6 +35,7 @@ params = setLocParams(params.experiment, params);
 params.sesFileName = sesFileName;
 params.doEyelink = doEyeTracking;
 params.output_folder = [CSF10_bit_path '/Output'];
+params.display.fixSizePixels = fix_size_pixels;
 % Get the current date and time
 currentDateTime = datetime('now');
 dateTimeString = datestr(currentDateTime);
