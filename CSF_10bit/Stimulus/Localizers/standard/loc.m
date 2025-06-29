@@ -1,10 +1,5 @@
 % loc - UPDATE MARCUS
-%       
-% 06/2005 SOD Ported to OSX. If the mouse is invisible,
-%             moving it to the Dock usually makes it reappear.
-% 10/2005 SOD Several changes, including adding gui.
-% 04/2006 SOD Converted from ret to loc
-
+% If there are mex problems - you can fix this with the 
 % clean up - it's good to clean up but mex files are extremely slow to be
 % loaded for the first time in MacOSX, so I chose not to do this to speed
 % things up. `
