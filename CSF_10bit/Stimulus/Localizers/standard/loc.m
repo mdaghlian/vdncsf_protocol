@@ -5,14 +5,23 @@
 % things up. `
 % close all;close hidden;
 % clear mex;clear all;
-close all
-clear all
-sca;
+close all;
+clear all;
+
+% INFO 
+initials = 'ZZ';
+sesNum = '01';
+runNum      = input('Please enter run number: ', 's');
+eyeViewing = 'R'; %
+sesFileName = ['sub-' initials '_ses-' sesNum '_run-' runNum '_eye-' eyeViewing];
+disp(sesFileName)
+doEyeTracking = 1;
+
+
+%
 Screen('Preference', 'SkipSyncTests', 1); 
 CSF10_bit_path = '/data1/projects/dumoulinlab/Lab_members/Marcus/programs/Experiments/vdncsf_protocol/CSF_10bit';
 addpath(genpath(CSF10_bit_path))
-
-% add stimulus files
 
 commandwindow
 % pack; 
@@ -23,6 +32,13 @@ drawnow;
 
 % now set rest of the params
 params = setLocParams(params.experiment, params);
+params.sesFileName = sesFileName;
+params.doEyelink = doEyeTracking;
+params.output_folder = [CSF10_bit_path '/Output'];
+% Get the current date and time
+currentDateTime = datetime('now');
+dateTimeString = datestr(currentDateTime);
+params.x_date_time_string = dateTimeString;
 
 % set response device
 params.devices = getDevices(false);

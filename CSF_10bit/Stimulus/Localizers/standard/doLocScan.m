@@ -23,7 +23,7 @@ end
 switch params.experiment
     case 'moving bars vs fixation'
         [stimulus, onebackSequence] = makeBarStimulus(params);
-    case {'contrast sensitivity function 4sf', 'contrast sensitivity function 6sf'}
+    case {'contrast sensitivity function 6sf'}
         [stimulus, onebackSequence, params] = makeCrfStimulus(params);
     otherwise
         [stimulus, onebackSequence] = makeLocStimulus(params);
@@ -57,7 +57,51 @@ try
     
     % Store the images in textures
     stimulus = createTextures(params.display,stimulus);
+    % ********************************************************
+        %% Initialize EyeLink if requested
+    if params.doEyelink
+        fprintf('\n[%s]: Setting up Eyelink..\n',mfilename)
+        % Eyelink('SetAddress','192.168.1.5'); % Eyelink IP address?
+        el = EyelinkInitDefaults(params.display.windowPtr);
 
+        %EyelinkUpdateDefaults(el);
+        %
+        % %     Initialize the eyetracker
+        Eyelink('Initialize', 'PsychEyelinkDispatchCallback');
+        % %     Set up 5 point calibration
+        s = Eyelink('command', 'calibration_type=HV9');
+        %
+        % %     Calibrate the eye tracker
+        EyelinkDoTrackerSetup(el);
+        %
+        % %     Throw an error if calibration failed
+        if s~=0
+            error('link_sample_data error, status: ', s)
+        end
+   
+%         el = prepEyelink(params.display.windowPtr);
+        % elfilename needs to be short...
+        alphabet = ['A':'Z', 'a':'z'];
+        randomIndices = randi(length(alphabet), 1, 6);
+        randomString = alphabet(randomIndices);
+        randomString = char(randomString);
+
+        ELfileName = sprintf('%s.edf', randomString);
+        
+        edfFileStatus = Eyelink('OpenFile', ELfileName);
+        
+        if edfFileStatus ~= 0, fprintf('Cannot open .edf file. Existing ...');
+            try
+                Eyelink('CloseFile');
+                Eyelink('Shutdown');
+            end
+            return; 
+        else
+            fprintf('\n[%s]: Succesfully openend Eyelink file..\n',mfilename)
+        end
+        % cal = EyelinkDoTrackerSetup(el);
+    end
+% ********************************************************
     % getting to the source rather than doScan->doTrial->showStimulus 
     for n = 1:params.repetitions
         % set priority
@@ -78,16 +122,33 @@ try
         KbQueueRelease() 
         KbTriggerWait(KbName('t')); %,-3)%-3 makes sure the Forb box is caught
         % [junk time0]=deviceUMC('wait for trigger',params.devices.UMCport);  
-   
+        if params.doEyelink
+            Eyelink('StartRecording');
+        end   
         % go
         %[response, timing, quitProg] = showScanStimulus(params.display,stimulus,time0);
         [response, timing, quitProg] = showScanStimulus(params.display,stimulus);
+        params.x_response = response;
+        params.x_timing = timing;         
+
+        if params.doEyelink
+            Eyelink('StopRecording');
+            Eyelink('ReceiveFile', ELfileName, params.output_folder ,1);
         
+            Eyelink('CloseFile');
+        
+            Eyelink('Shutdown');            
+            % Rename the file
+            movefile([params.output_folder '/' ELfileName], [params.output_folder '/' params.sesFileName datestr(now,30) '.edf']);
+        end
         % reset priority
         % Priority(0);
         
         % get performance
         [pc,rc,nn] = getFixationPerformance(params.fix,stimulus,response); 
+        params.x_pc = pc;
+        params.x_rc= rc;
+        params.x_nn = nn;
         % disp(sprintf('[%s]:Fixation dot task(%d): percent correct: %.1f %%, reaction time: %.1f secs',mfilename,nn,pc,rc));
         fprintf('[%s]:Fixation dot task(%d): percent correct: %.1f %%, reaction time: %.1f secs',mfilename,nn,pc,rc);
         
@@ -101,7 +162,8 @@ try
         % save 
         if params.savestimparams == 1
 
-            filename = [ '/data1/projects/dumoulinlab/Lab_members/Marcus/programs/Experiments/vdncsf_protocol/CSF_10bit/Output/' datestr(now,30) '.mat'];
+            filename = [ params.output_folder '/' params.sesFileName datestr(now,30) '.mat'];
+
             save(filename);                % save parameters
             % disp(sprintf('[%s]:Saving in %s.',mfilename,filename));
             fprintf('[%s]:Saving in %s.',mfilename,filename);
