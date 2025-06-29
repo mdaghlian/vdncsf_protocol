@@ -91,7 +91,7 @@ try,
                     xdot, ydot, gp.dot.size);
             end;
             Screen('Flip',gp.display.windowPtr);
-            sound(sin(linspace(0,2*pi*30,1000)));
+%             sound(sin(linspace(0,2*pi*30,1000)));
             WaitSecs(gp.dot.timePerPixel);
             
             Screen('FillRect', gp.display.windowPtr, gp.display.backColorRgb);
@@ -158,7 +158,7 @@ try,
             break;
         end;
         disp(sprintf('\n[%s]:Done repetition set %d/%d',mfilename,rep,gp.dot.measurementsPerDot));
-        save('./Output/hptmp.mat');drawnow;
+        save('/data1/projects/dumoulinlab/Lab_members/Marcus/programs/Experiments/vdncsf_protocol/Perimetry/HumphreyPerimetry/hptmp.mat');drawnow;
     end;
     % close
     ShowCursor;

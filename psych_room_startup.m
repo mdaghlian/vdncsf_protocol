@@ -1,7 +1,7 @@
 % Scanner room startup script
 % Your MATLAB script
 
-disp(' Matlab startup script for SCANNER ROOM ')
+disp([' Matlab startup script for PSYCH ROOM '])
 disp('say yes to replacing all the paths')
 disp('then press enter till you get to the end')
 disp('press enter to continue')
