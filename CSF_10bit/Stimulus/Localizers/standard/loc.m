@@ -15,8 +15,8 @@ runNum      = input('Please enter run number: ', 's');
 eyeViewing = 'R'; %
 sesFileName = ['sub-' initials '_ses-' sesNum '_run-' runNum '_eye-' eyeViewing];
 disp(sesFileName)
-doEyeTracking = 0;
-fix_size_pixels = 2;
+doEyeTracking = 1;
+fix_size_pixels = 5;
 
 %
 Screen('Preference', 'SkipSyncTests', 1); 

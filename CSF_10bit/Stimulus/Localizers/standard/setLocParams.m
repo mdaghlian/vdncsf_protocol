@@ -15,7 +15,7 @@ function params = setLocParams(expName, params)
 % 2006.04.05 SOD ported from ret to loc
 
 % the following should match those listed in the switch statement below
-expNames = {'contrast sensitivity function 6sf'};
+expNames = {'contrast sensitivity function 6sf', 'contrast sensitivity quick eye track'};
 % ,'faces vs scrambled','faces vs objects (no faces)','faces vs fixation','faces vs fixation with 1-back','scrambled faces vs fixation',...
 % 'objects vs scrambled', 'objects vs fixation','moving bars vs fixation','objects vs fixation with 1-back','objects (no faces) vs scrambled',...
 % 'faces vs objects (no faces) vs scrambled vs fixation'};%,'words vs lines vs fixation'};
@@ -190,7 +190,7 @@ switch expName
         params.temporal.motionFrequency = 4; %Hz
         params.temporal.motionSteps = 8;
 
-    case {'contrast sensitivity function 4sf', 'contrast sensitivity function 6sf'}
+    case {'contrast sensitivity function 4sf', 'contrast sensitivity function 6sf',  'contrast sensitivity quick eye track'}
         params.type = 'image';
         params.duration.offBlock = params.duration.onBlock;
         params.duration.scan     = params.ncycles*params.duration.onBlock.*2;

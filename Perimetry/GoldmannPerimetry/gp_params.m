@@ -56,7 +56,7 @@ gp.display.quitProgKey    = KbName('q');
 gp.display.screenNumber   = max(Screen('screens'));
 gp.display.backColorRgb   = [80 80 80 255]; % 0.5 log units apart
 %--- make fixation cross
-gp.display.fixType          = 'disk'; %'largeCross'
+gp.display.fixType          = 'largeCross'; %'largeCross'
 switch(gp.display.fixType)
     case 'disk',
         gp.display.fixColorRgb    = [255 0 0 255];

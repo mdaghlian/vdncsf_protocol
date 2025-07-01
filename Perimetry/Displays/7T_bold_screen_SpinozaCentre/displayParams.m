@@ -3,7 +3,7 @@ function params=displayParams(gamma)
 params.screenNumber = 0; %set 1 for device
 
 %% set gamma values;
-% gamma = load('/data1/projects/dumoulinlab/Lab_members/Marcus/programs/Experiments/vdncsf_protocol/CSF_10bit/Stimulus/Displays/7T_bold_screen_SpinozaCentre/gamma.mat');
+gamma = load('/data1/projects/dumoulinlab/Lab_members/Marcus/programs/Experiments/vdncsf_protocol/CSF_10bit/Stimulus/Displays/7T_bold_screen_SpinozaCentre/gamma.mat');
 params.screenNumber = max(Screen('Screens')); %set 2 for BOLD screen psychophysics room.
                                                % Set to 0 for 7T BOLD
                                                % screen

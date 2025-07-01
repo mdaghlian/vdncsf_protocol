@@ -18,19 +18,10 @@ Then press s,  Esc, y, Enter to save and confirm the screen settings
 
 run_QCSF.m -> to do qCSF testing
 
-### Python setup (PRF)
-- Open terminal in PRF_stimulus
-cd Experiment
-conda activate eyelink
-- run a test 
+### nCSF setup 
+- go to CSF_10bit
+- enter participant id; and run (makesure to say psych-)
 
-[1] activate correct environemnt
-conda activate eyelink
-
-[2] Correct command to get it running 
-python main.py --sub 999 --ses 1 --run 1 --eye 1 --task 2R_scanner
-
-[3] Eyetracker 
 * Check the correct eye is selected
 * press (c) to Calibrate
 * press (v) to validate

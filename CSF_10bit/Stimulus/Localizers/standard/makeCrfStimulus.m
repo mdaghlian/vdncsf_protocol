@@ -42,6 +42,9 @@ switch params.experiment
         params.sf = [3 18 1 6 0.5 12 6 1 12 3 18 0.5]; % c/deg RE-ENABLE!!
         params.sf_order = [3 6 2 4 1 5 4 2 5 3 6 1];
 %         params.sf = [.5 .5 .5 .5 18 18 18 18 3 3]; % c/deg
+    case  'contrast sensitivity quick eye track'
+        params.sf = [6 3 18 12]; % c/deg
+        params.sf_order = [2,1,3,4];
     otherwise
 end
     
@@ -51,6 +54,8 @@ switch params.experiment
         params.cd = [1 0  1  0  1  0  1  0]; % 0=ramp up, 1=ramp down
     case 'contrast sensitivity function 6sf'
         params.cd = [1 0 1 0 1 0 1 0 1 0 1 0];
+    case  'contrast sensitivity quick eye track'
+        params.cd = [1 0 1 0];
     otherwise 
 end
 

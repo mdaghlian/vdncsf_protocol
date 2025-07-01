@@ -23,7 +23,7 @@ end
 switch params.experiment
     case 'moving bars vs fixation'
         [stimulus, onebackSequence] = makeBarStimulus(params);
-    case {'contrast sensitivity function 6sf'}
+    case {'contrast sensitivity function 6sf', 'contrast sensitivity quick eye track'}
         [stimulus, onebackSequence, params] = makeCrfStimulus(params);
     otherwise
         [stimulus, onebackSequence] = makeLocStimulus(params);
@@ -63,11 +63,22 @@ try
         fprintf('\n[%s]: Setting up Eyelink..\n',mfilename)
         % Eyelink('SetAddress','192.168.1.5'); % Eyelink IP address?
         el = EyelinkInitDefaults(params.display.windowPtr);
-
         %EyelinkUpdateDefaults(el);
         %
         % %     Initialize the eyetracker
         Eyelink('Initialize', 'PsychEyelinkDispatchCallback');
+
+        % --- MD EDIT ---
+        % Example: [windowPtr, rect] = Screen('OpenWindow', screenid, 0, [], 32, 2);
+        
+        % Get the screen resolution (width and height of your Psychtoolbox window)
+        screenWidth_PTB = params.display.rect(3) - params.display.rect(1); % rect(3) is right edge, rect(1) is left edge
+        screenHeight_PTB = params.display.rect(4) - params.display.rect(2); % rect(4) is bottom edge, rect(2) is top edge
+        Eyelink('command', 'screen_pixel_coords = %ld %ld %ld %ld', 0, 0, screenWidth_PTB - 1, screenHeight_PTB - 1);
+        Eyelink('message', 'DISPLAY_COORDS %ld %ld %ld %ld', 0, 0, screenWidth_PTB - 1, screenHeight_PTB - 1);
+        % --- MD EDIT end ---
+
+
         % %     Set up 5 point calibration
         s = Eyelink('command', 'calibration_type=HV9');
         %

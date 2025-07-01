@@ -198,7 +198,7 @@ contents = get(hObject,'String');
 handles.data.experiment = contents{get(hObject,'Value')};
 
 switch handles.data.experiment
-    case    {'contrast sensitivity function 4sf', 'contrast sensitivity function 6sf'}
+    case    {'contrast sensitivity function 4sf', 'contrast sensitivity function 6sf',  'contrast sensitivity quick eye track'}
 %         set(handles.experiment,     'String',setLocParams);
          fixString  = {'disk','double disk','large cross','large cross x+','left disk','right disk'};
          set(handles.fixation(1),    'String',fixString);

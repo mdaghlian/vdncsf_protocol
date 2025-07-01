@@ -111,9 +111,12 @@ class PRFSession(PylinkEyetrackerSession):
                 units='pix', radius=fixation_radius_pixels, 
                 fillColor=[-1,1,-1], lineColor=[-1,1,-1])
         elif self.settings['PRF stimulus settings']['fixation_method'] == 'cross':
-            line_width=tools.monitorunittools.deg2pix(
-                self.settings['PRF stimulus settings']['fix_cross_parameters']['line_width'],
-                self.monitor)            
+            # line_width=tools.monitorunittools.deg2pix(
+            #     self.settings['PRF stimulus settings']['fix_cross_parameters']['line_width'],
+            #     self.monitor)  
+            # print(line_width)          
+            line_width=self.settings['PRF stimulus settings']['fix_cross_parameters']['line_width']
+
 
             dot_radius=self.settings['PRF stimulus settings']['fix_cross_parameters']['dot_radius']
             line_radius=50

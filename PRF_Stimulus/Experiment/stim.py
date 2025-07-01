@@ -240,17 +240,17 @@ class FixationBullsEye(object):
             units='deg' 
         )
 
-        # Create the central dot stimulus
-        self.center_dot = visual.Circle(
-            win=win,
-            radius=self.dot_radius,
-            fillColor=self.fix_col,
-            lineColor=None, # No border for the dot
-            units='deg'
-        )
+        # # Create the central dot stimulus
+        # self.center_dot = visual.Circle(
+        #     win=win,
+        #     radius=self.dot_radius,
+        #     fillColor=self.fix_col,
+        #     lineColor=None, # No border for the dot
+        #     units='deg'
+        # )
     def draw(self):
         # --- Drawing and Displaying ---
         # Draw all stimuli to the back buffer
         self.cross_line1.draw()
         self.cross_line2.draw()
-        self.center_dot.draw()
+        # self.center_dot.draw()

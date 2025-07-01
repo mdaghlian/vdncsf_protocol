@@ -1,6 +1,8 @@
 % Scanner room startup script
 % Your MATLAB script
-
+clear all
+close all
+% restoredefaultpath
 disp(' Matlab startup script for SCANNER ROOM ')
 disp('say yes to replacing all the paths')
 disp('then press enter till you get to the end')
