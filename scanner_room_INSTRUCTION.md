@@ -42,7 +42,3 @@ python main.py --sub 999 --ses 1 --run 1 --eye 1 --task 2R_scanner
 
 
 
-# *** FRACT
-
-220 cm distanct
-252 = blue ruler

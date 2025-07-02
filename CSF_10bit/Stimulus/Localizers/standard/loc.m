@@ -9,13 +9,14 @@ close all;
 clear all;
 
 % INFO 
-initials = 'ZZ';
-sesNum = '01';
+initials = 'zz';
+sesNum = 'zz';
 runNum      = input('Please enter run number: ', 's');
-eyeViewing = 'R'; %
+eyeViewing = 'R'; % L/R
 sesFileName = ['sub-' initials '_ses-' sesNum '_run-' runNum '_eye-' eyeViewing];
 disp(sesFileName)
 doEyeTracking = 1;
+location = 'scanner'; % psych/scanner
 fix_size_pixels = 5;
 
 %
@@ -34,8 +35,10 @@ drawnow;
 params = setLocParams(params.experiment, params);
 params.sesFileName = sesFileName;
 params.doEyelink = doEyeTracking;
+params.eyeViewing = eyeViewing;
 params.output_folder = [CSF10_bit_path '/Output'];
 params.display.fixSizePixels = fix_size_pixels;
+params.x_location = location;
 % Get the current date and time
 currentDateTime = datetime('now');
 dateTimeString = datestr(currentDateTime);

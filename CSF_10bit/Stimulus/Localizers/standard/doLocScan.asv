@@ -135,7 +135,7 @@ try
         
         dispStringInCenter(params.display,'Waiting for scanner to start',0.6,40,[0 0 0]);
         %% ILONA CODE SNIPPET -> FIX FOR SCANNER        
-        try
+        try:
             [keyboardIndx, productNames] = GetKeyboardIndices;
             deviceString = 'Current Designs, Inc. 932';
     
@@ -151,7 +151,7 @@ try
             end
             KbQueueRelease() 
             KbTriggerWait(KbName('t'), deviceNumber);
-        catch
+        
             KbQueueRelease() 
             KbTriggerWait(KbName('t'))
         end
