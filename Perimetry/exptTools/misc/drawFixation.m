@@ -53,10 +53,17 @@ switch(lower(d.fixType))
 		Screen('FillRect', d.windowPtr, d.fixColorRgb(colIndex,:), [d.fixX-d.fixSizePixels/2 d.fixY-1 d.fixX+d.fixSizePixels/2 d.fixY+1]);
         Screen('FillRect', d.windowPtr, d.fixColorRgb(colIndex,:), [d.fixX-1 d.fixY-d.fixSizePixels/2 d.fixX+1 d.fixY+d.fixSizePixels/2]);
 
+%     case {'large cross' , 'largecross','large cross x+','largecrossx+'},
+% 		if numel(d.fixCoords) > 1, colIndex2=colIndex; else, colIndex2 = 1; end;
+%         Screen('DrawDots', d.windowPtr, d.fixCoords{colIndex2}, d.fixSizePixels(colIndex2), d.fixColorRgb(colIndex,:));
     case {'large cross' , 'largecross','large cross x+','largecrossx+'},
-		if numel(d.fixCoords) > 1, colIndex2=colIndex; else, colIndex2 = 1; end;
-        Screen('DrawDots', d.windowPtr, d.fixCoords{colIndex2}, d.fixSizePixels(colIndex2), d.fixColorRgb(colIndex,:));
-    
+%         Screen('DrawDots', d.windowPtr, d.fixCoords{1}, d.fixSizePixels(1), d.fixColorRgb);
+        if numel(d.fixCoords) > 1, colIndex2=colIndex; else, colIndex2 = 1; end;
+        if iscell(d.fixCoords)
+            Screen('DrawDots', d.windowPtr, d.fixCoords{colIndex2}, d.fixSizePixels(colIndex2), d.fixColorRgb(colIndex,:));
+        else
+            Screen('DrawDots', d.windowPtr, d.fixCoords, d.fixSizePixels(colIndex2), d.fixColorRgb(colIndex,:));
+        end    
     case {'double large cross' , 'doublelargecross'},
         Screen('DrawDots', d.windowPtr, d.fixCoords, d.fixSizePixels, d.fixColorRgb(1,:));
         Screen('DrawDots', d.windowPtr, d.fixCoords, ceil(d.fixSizePixels./2), d.fixColorRgb(end,:));

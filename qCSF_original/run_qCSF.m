@@ -4,6 +4,13 @@
 
 close('all'); clc;
 clear all;
+qcsf_dir = '/data1/projects/dumoulinlab/Lab_members/Marcus/programs/Experiments/vdncsf_protocol/qCSF_original';
+ncsf_dir = '/data1/projects/dumoulinlab/Lab_members/Marcus/programs/Experiments/vdncsf_protocol/CSF_10bit';
+peri_dir = '/data1/projects/dumoulinlab/Lab_members/Marcus/programs/Experiments/vdncsf_protocol/Perimetry';
+cd(qcsf_dir);
+rmpath(genpath(ncsf_dir))
+rmpath(genpath(peri_dir))
+
 rootDir = pwd;
 
 initials = input('>>>>>>>> Participant ID (eg, S1): ','s');

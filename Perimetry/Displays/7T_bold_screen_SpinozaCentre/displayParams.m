@@ -3,7 +3,7 @@ function params=displayParams(gamma)
 params.screenNumber = 0; %set 1 for device
 
 %% set gamma values;
-gamma = load('/data1/projects/dumoulinlab/Lab_members/Marcus/programs/Experiments/vdncsf_protocol/CSF_10bit/Stimulus/Displays/7T_bold_screen_SpinozaCentre/gamma.mat');
+% gamma = load('/data1/projects/dumoulinlab/Lab_members/Marcus/programs/Experiments/vdncsf_protocol/CSF_10bit/Stimulus/Displays/7T_bold_screen_SpinozaCentre/gamma.mat');
 params.screenNumber = max(Screen('Screens')); %set 2 for BOLD screen psychophysics room.
                                                % Set to 0 for 7T BOLD
                                                % screen
@@ -19,15 +19,23 @@ params.degperpix=2*((atan(params.dimensions./(2*params.distance))).*(180/pi))./p
 params.pixperdeg = 1./params.degperpix; %n of pixels for 1 visual angle;
 params.pixperdeg = ceil(mean(params.pixperdeg));
 params.backgroundColor = [ 127 127 127 ];
-params.fixationColor = [255 0 0];
+params.fixationColor = [255 255 0];
 ResDiff = ceil((params.numPixels(1) - params.numPixels(2))/2);
 params.LineEnds = [ ResDiff, 0, (params.numPixels(1) - ResDiff), params.numPixels(2)];
 %params.rectangle = [ 0 0 params.numPixels(1) params.numPixels(2) ];
 params.fixationSize = params.pixperdeg*0.5;
 params.rect = [ 0 0 params.numPixels ];
 params.frameRate = 120;
-params.cmapDepth = 12; %8;
+params.cmapDepth = 8; %8;
 
+
+%% Prepare to open window, 
+% Make sure that PTB is installed correctly, and set up for use at feature
+% level 2
+PsychDefaultSetup(2)
+
+% Setup imaging pipeline
+% PsychImaging('PrepareConfiguration');
 %% Open a display window
 params.wPtr = Screen('OpenWindow',params.screenNumber, ...
 params.backgroundColor, params.rect, [], 2);

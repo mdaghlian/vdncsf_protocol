@@ -3,7 +3,7 @@ function gp=hp_presentation(gp);
 
 % load mex functions
 KbCheck;GetSecs;WaitSecs(0.001);
-
+InitializePsychSound(1);
 % calibration
 try,
     f=load('/Applications/MATLAB72/displays/Yoichiros_Monitor/gamma.mat');
@@ -91,8 +91,15 @@ try,
                     xdot, ydot, gp.dot.size);
             end;
             Screen('Flip',gp.display.windowPtr);
-%             sound(sin(linspace(0,2*pi*30,1000)));
-            WaitSecs(gp.dot.timePerPixel);
+            try
+                sound(sin(linspace(0,2*pi*60,2000))); % sound(sin(linspace(0,2*pi*30,1000)));
+                WaitSecs(gp.dot.timePerPixel);
+            catch
+                WaitSecs(gp.dot.timePerPixel);
+                disp('blah')
+%                 sound(sin(linspace(0,2*pi*60,2000))); % sound(sin(linspace(0,2*pi*30,1000)));
+                WaitSecs(gp.dot.timePerPixel);                
+            end
             
             Screen('FillRect', gp.display.windowPtr, gp.display.backColorRgb);
             drawFixation(gp.display,2);

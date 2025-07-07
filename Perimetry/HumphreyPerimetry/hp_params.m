@@ -11,16 +11,18 @@ gp.subject         = input(sprintf('[%s]:Enter subjects initials : ',mfilename),
 if isempty(gp.subject),
     gp.subject = 'test';
 end;
-gp.screenHeightDeg = input(sprintf('[%s]:What is the screen diameter in degrees [default = 28deg]? : ',mfilename));
+gp.screenHeightDeg = input(sprintf('[%s]:What is the screen diameter in degrees [default = 10.0.deg]? : ',mfilename));
 if isempty(gp.screenHeightDeg),
-    gp.screenHeightDeg = 28;
+    gp.screenHeightDeg = 10.0;
 end;
 
 % standard Goldman is 64mm2 from 33cm distance:
 % actual distance is 30cm...
-gp.dot.sizeInDeg   = input(sprintf('[%s]:Enter dot radius in degrees [default = 0.86deg]: ',mfilename));
+gp.dot.sizeInDeg   = input(sprintf('[%s]:Enter dot radius in degrees [default = 0.43deg]: ',mfilename));
 if isempty(gp.dot.sizeInDeg),
-    gp.dot.sizeInDeg = 0.86;% old value was 0.78 using wrong distance
+    % old values from SOD: 0.78; 0.86...
+    % Goldmann size III = 0.43 in radius
+    gp.dot.sizeInDeg = 0.43;
 end;
 
 
@@ -41,11 +43,11 @@ gp.screenSize    = gp.screenRect([3 4]);
 gp.dot.size         = round((gp.screenSize(2)./gp.screenHeightDeg)).*gp.dot.sizeInDeg; % 1 deg
 gp.dot.coordAxis    = 'cartesian'; % polar or cartesian coordinate system
 gp.dot.coordCenter  = round(gp.screenSize./2); % center coordinates
-gp.dot.coordNLines  = 4; % per quadrant
-gp.dot.timePerPixel = 0.05; % sec 
+gp.dot.coordNLines  = 4; % per quadrant -> for polar
+gp.dot.timePerPixel = 0.2; % sec 
 gp.dot.timeToRespond = 2.5; % sec 
 gp.dot.colorRgb     = [255 255 255 255];
-gp.dot.ndots        = 12^2;%14^2;
+gp.dot.ndots        = 6^2;%14^2;
 disp(sprintf('[%s]:Dot grid spacing: %.1fdeg; Dot size: %.1fdeg',...
     mfilename,gp.screenHeightDeg./sqrt(gp.dot.ndots),gp.dot.sizeInDeg));
 gp.dot.percentageBlank = .3; % no stim
@@ -54,8 +56,8 @@ gp.dot.measurementsPerDot = 4;
 % display params
 gp.display = loadDisplayParams('displayName','7T_bold_screen_10bit_SpinozaCentre');
 gp.display.quitProgKey    = KbName('q');
-gp.display.yesKey    = 'm';
-gp.display.noKey     = 'x';
+gp.display.yesKey    = '2';
+gp.display.noKey     = '1';
 disp(sprintf('[%s]:When stimulus is detected press %s otherwise press %s',...
     mfilename,gp.display.yesKey,gp.display.noKey));
 gp.display.screenNumber   = max(Screen('screens'));
@@ -88,13 +90,14 @@ switch lower(gp.display.fixType)
 
         
         
-    case 'largeCross'
-        gp.display.fixColorRgb    = [255 255 0 255];
-        gp.display.fixSizePixels  = ceil(gp.screenSize(2)./gp.screenHeightDeg./4); %0.25 deg
-        dim.ycoord = [1:gp.screenSize(2) gp.screenSize(2):-1:1] ; % assume ydim is smallest
-        dim.xcoord = [1:gp.screenSize(2) 1:gp.screenSize(2)] + round(-gp.screenSize(2)/2+gp.screenSize(1)/2);
-        gp.display.fixCoords{1} = [dim.xcoord;dim.ycoord];
-        
+%     case 'largeCross'
+%         gp.display.fixColorRgb    = [255 255 0 255;...
+%                                      255 255 0 255];
+%         gp.display.fixSizePixels  = ceil(gp.screenSize(2)./gp.screenHeightDeg./4); %0.25 deg
+%         dim.ycoord = [1:gp.screenSize(2) gp.screenSize(2):-1:1] ; % assume ydim is smallest
+%         dim.xcoord = [1:gp.screenSize(2) 1:gp.screenSize(2)] + round(-gp.screenSize(2)/2+gp.screenSize(1)/2);
+%         gp.display.fixCoords{1} = [dim.xcoord;dim.ycoord];
+%         
     case {'large cross x+' , 'largecrossx+'},
         gp.display.fixColorRgb    = [255 255 0 255;...
                                      255 255 0 255];
@@ -109,7 +112,16 @@ switch lower(gp.display.fixType)
         dim.ycoord = [1:dim.y [1:dim.y].*0+round(dim.y./2)] ; % assume ydim is smallest
         dim.xcoord = [[1:dim.y].*0+round(dim.y./2) 1:dim.y] + round(-dim.y/2+dim.x/2);
         gp.display.fixCoords{2} = [dim.xcoord;dim.ycoord];
-
+    case {'large cross' , 'largecross'}
+        gp.display.fixColorRgb    = [255 0 0 255;...
+                                     0 255 0 255];
+        gp.display.fixSizePixels  = 5; % MARCUS YOU CAN CHANGE THIS HERE
+        dim.x = gp.display.numPixels(1);
+        dim.y = gp.display.numPixels(2);
+        dim.ycoord = [1:dim.y dim.y:-1:1] ; % assume ydim is smallest
+        dim.xcoord = [1:dim.y 1:dim.y] + round(-dim.y/2+dim.x/2);
+        gp.display.fixCoords{1} = [dim.xcoord;dim.ycoord];
+        
     otherwise,
         error('Unknown fixationType!');
 end

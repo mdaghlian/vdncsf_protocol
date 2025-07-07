@@ -2,6 +2,15 @@ function HumphreyPerimetry;
 % Perimetry - perform Humprey's perimetry
 
 % 09/2006 sod wrote it
+close('all'); clc;
+clear all;
+qcsf_dir = '/data1/projects/dumoulinlab/Lab_members/Marcus/programs/Experiments/vdncsf_protocol/qCSF_original';
+ncsf_dir = '/data1/projects/dumoulinlab/Lab_members/Marcus/programs/Experiments/vdncsf_protocol/CSF_10bit';
+peri_dir = '/data1/projects/dumoulinlab/Lab_members/Marcus/programs/Experiments/vdncsf_protocol/Perimetry';
+cd([peri_dir '/HumphreyPerimetry'] );
+addpath(genpath(peri_dir))
+rmpath(genpath(ncsf_dir))
+rmpath(genpath(qcsf_dir))
 
 % initialize params
 gp = hp_params;

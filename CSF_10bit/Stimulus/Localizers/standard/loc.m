@@ -5,8 +5,15 @@
 % things up. `
 % close all;close hidden;
 % clear mex;clear all;
-close all;
+close('all'); clc;
 clear all;
+qcsf_dir = '/data1/projects/dumoulinlab/Lab_members/Marcus/programs/Experiments/vdncsf_protocol/qCSF_original';
+ncsf_dir = '/data1/projects/dumoulinlab/Lab_members/Marcus/programs/Experiments/vdncsf_protocol/CSF_10bit';
+peri_dir = '/data1/projects/dumoulinlab/Lab_members/Marcus/programs/Experiments/vdncsf_protocol/Perimetry';
+cd(ncsf_dir);
+addpath(genpath(ncsf_dir))
+rmpath(genpath(qcsf_dir))
+rmpath(genpath(peri_dir))
 
 % INFO 
 initials = 'zz';
@@ -16,7 +23,7 @@ eyeViewing = 'R'; % L/R
 sesFileName = ['sub-' initials '_ses-' sesNum '_run-' runNum '_eye-' eyeViewing];
 disp(sesFileName)
 doEyeTracking = 1;
-location = 'scanner'; % psych/scanner
+location = 'psych'; % psych/scanner
 fix_size_pixels = 5;
 
 %
