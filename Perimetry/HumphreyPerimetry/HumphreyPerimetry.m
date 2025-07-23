@@ -13,8 +13,9 @@ rmpath(genpath(ncsf_dir))
 rmpath(genpath(qcsf_dir))
 
 % initialize params
+eye='LE';
 gp = hp_params;
-
+gp.doEyelink = 0;
 % show stimulus
 tic;
 gp = hp_presentation(gp);
@@ -64,6 +65,6 @@ title(sprintf('Dot Shown: Diameter = %.1fdeg; Dot distance = %.1fdeg;',gp.screen
 
 
 % save
-filename = ['./Output/' mfilename '-' gp.subject '-' datestr(now,30) '.mat'];
+filename = ['./Output/' mfilename '-' gp.subject '-' eye '-' datestr(now,30) '.mat'];
 save(filename);
 disp(sprintf('[%s]:saved data in: %s',mfilename,filename));

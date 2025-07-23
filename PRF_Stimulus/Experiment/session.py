@@ -123,7 +123,8 @@ class PRFSession(PylinkEyetrackerSession):
             # Green 
             self.fixation_disk_0 =  FixationBullsEye(
                 win=self.win,
-                fix_col=[1,-1,-1],
+                # fix_col=[1,-1,-1],
+                fix_col=[-1,-1,-1],
                 line_width=line_width,
                 dot_radius=dot_radius,
                 line_radius=line_radius,
@@ -131,7 +132,8 @@ class PRFSession(PylinkEyetrackerSession):
             # Red
             self.fixation_disk_1 =  FixationBullsEye(
                 win=self.win,
-                fix_col=[-1,1,-1],
+                # fix_col=[-1,1,-1],
+                fix_col=[1,1,1],
                 line_width=line_width,
                 dot_radius=dot_radius,
                 line_radius=line_radius,

@@ -217,3 +217,6 @@ if __name__ == "__main__":
     #     horizontal_deg=params['width_deg'],
     #     vertical_deg=params['height_deg'],
     # )
+
+
+# {'height_px': 1080.0, 'width_px': 1920.0, 'distance_cm': 220.0, 'width_cm': 69.0, 'aspect_ratio': 1.7777777777777777, 'pix_per_cm': 27.82608695652174, 'height_cm': 38.8125, 'width_deg': 17.82486993904548, 'height_deg': 10.082051873839621, 'pix_per_deg': 107.7146709381721}

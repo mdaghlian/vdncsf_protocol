@@ -5,6 +5,15 @@
 % things up. `
 % close all;close hidden;
 % clear mex;clear all;
+
+% **** FOR MARCUS SCANNING TODAY ***
+% RUN LOC
+% enter run number 
+% select calibration (10bits)
+% "waiting for scanner screen"
+% proceed on scanner...
+% 
+
 close('all'); clc;
 clear all;
 qcsf_dir = '/data1/projects/dumoulinlab/Lab_members/Marcus/programs/Experiments/vdncsf_protocol/qCSF_original';
@@ -16,15 +25,15 @@ rmpath(genpath(qcsf_dir))
 rmpath(genpath(peri_dir))
 
 % INFO 
-initials = 'zz';
-sesNum = 'zz';
+initials = 'amb02';
+sesNum = 'scanLE';
 runNum      = input('Please enter run number: ', 's');
-eyeViewing = 'R'; % L/R
+eyeViewing = 'L'; % L/R
 sesFileName = ['sub-' initials '_ses-' sesNum '_run-' runNum '_eye-' eyeViewing];
 disp(sesFileName)
-doEyeTracking = 1;
+doEyeTracking = 0;
 location = 'psych'; % psych/scanner
-fix_size_pixels = 5;
+fix_size_pixels = 80; % 5=default, amb02=80
 
 %
 Screen('Preference', 'SkipSyncTests', 1); 

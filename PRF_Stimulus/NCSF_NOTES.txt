@@ -22,3 +22,10 @@ That is it
 
 # EXPECTED TRS LONG = 225
 # EXPECTED TRS SHORT = 125
+
+
+
+# **** FOR MARCUS SCANNING TODAY ****
+# -> run the following below in the vs code terminal 
+# -> update the run number 
+python main.py --sub ctrl02 --ses LE --run 1 --eye 0 --task 2R_scanner 

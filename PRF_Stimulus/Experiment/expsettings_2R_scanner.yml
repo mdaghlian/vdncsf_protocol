@@ -61,7 +61,7 @@ PRF stimulus settings:
     fixation_method : cross    
     fix_cross_parameters:
         dot_radius: 0.05
-        line_width: 5 #0.025 (in pixels to match ncsf)
+        line_width: 5 # 5=default, amb02=80 (in pixels to match ncsf)
 Task settings: 
     response interval: 0.8 # time in s you allow the participant to respond that still counts as correct response
     color switch interval: 3.5 # interval in s between color dot switches, note: a random decimal between -1 and +1 is added to it in the code 
